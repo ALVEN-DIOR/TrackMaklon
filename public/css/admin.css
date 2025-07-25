@@ -1,0 +1,255 @@
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: #f3f3f3 url('../gambar/bgmaklon.jpg') no-repeat center center fixed;
+  background-size: cover;
+  color: #333;
+}
+
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.form-group {
+  width: 30%;
+  padding: 0.8rem 1.5rem;
+  border: 2px solid rgba(0, 0, 0, 0.1);
+  border-radius: 15px;
+  font-size: 0.95rem;
+  color: #000000;
+  margin: auto;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+  background-color: #ffffffcc;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: -10px;
+  color: #ffffff;
+  font-size: 2rem;
+}
+
+.stages {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 0.5rem;
+  color: #000000;
+}
+
+.card {
+  background: #ffffffdd;
+  border: 5px solid #000000;
+  border-radius: 10px;
+  padding: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  box-shadow: 6px 6px rgba(0,0,0,0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Tambahan efek hover */
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 8px 8px rgba(0, 0, 0, 0.1);
+}
+
+
+.card h2 {
+  font-size: 1.1rem;
+  color: #000000;
+  margin: 0;
+  text-align: center;
+}
+
+.card-img img {
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
+  object-fit: cover;
+  border: 1px solid #000000;
+}
+
+.controls {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.controls textarea,
+.controls input[type="date"],
+.controls select {
+  padding: 0.5rem;
+  border: 1px solid #000000;
+  border-radius: 6px;
+  font-size: 0.9rem;
+}
+
+select {
+  transition: background-color 0.3s ease;
+}
+
+.file-upload {
+  display: none;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: -10px;
+}
+
+.file-upload input[type="file"] {
+  padding: 0.5rem ;
+  background-color: #f2f2f2;
+  border: 1px dashed #000000;
+  border-radius: 6px;
+  font-size: 0.75rem;
+}
+
+.file-upload input[type="text"] {
+  padding: 0.5rem;
+  border: 1px solid #000000;
+  border-radius: 6px;
+}
+
+.file-upload label {
+  font-weight: 600;
+  color: #000000;
+  margin-bottom: -5px;
+}
+
+.file-upload .file-prev {
+  margin: 10px 0 0 0;
+  font-size: 0.85rem;
+  color: #000000;
+  font-style: italic;
+}
+
+.stage-desc {
+  font-size: 0.85rem;
+  font-style: italic;
+  color: #000000;
+  text-align: center;
+}
+
+.btn-save {
+  margin-top: 2rem;
+  padding: 0.8rem 1.6rem;
+  background-color: #ffffff;
+  color: rgb(0, 0, 0);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  transition: background-color 0.3s ease;
+}
+
+.btn-save:hover {
+  background-color: #1ca321;
+}
+
+a {
+  color: #0077ff;
+  text-decoration: none;
+}
+
+a:hover {
+  color: green;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .stages {
+    grid-template-columns: 1fr;
+  }
+
+  .controls {
+    flex-direction: column;
+  }
+
+  .form-group {
+    width: 90%;
+  }
+}
+
+/* Notifikasi Sukses */
+.alert-success {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: #b6f7c1;
+  color: #0f5132;
+  padding: 12px 22px;
+  border-radius: 10px;
+  box-shadow: 0 0 12px rgba(0,0,0,0.15);
+  animation: fadeOut 4s ease forwards;
+  z-index: 1000;
+  font-weight: bold;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.alert-success::before {
+  content: "✔️";
+  font-size: 1.2rem;
+}
+
+/* Fade-out Animation */
+@keyframes fadeOut {
+  0% { opacity: 1; }
+  80% { opacity: 1; }
+  100% { opacity: 0; transform: translateY(-20px); }
+}
+
+.header-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 2rem;
+  padding: 0 1rem;
+}
+
+.header-actions .back-button {
+  padding: 10px 20px;
+  background-color: white;
+  color: black;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: bold;
+  transition: background-color 0.3s;
+  border: 2px solid rgba(0, 0, 0, 1);
+  border-radius: 10px;
+}
+
+.header-actions .back-button:hover {
+  background-color: #245a28;
+  color: white;
+  border: 2px solid rgb(255, 255, 255, 1);
+  border-radius: 10px;
+}
+
+.header-actions .btn-save {
+  margin: 0; /* hapus margin atas dan auto yang sebelumnya */
+  font-weight: bold;
+  border: 2px solid rgba(0, 0, 0, 1);
+  border-radius: 10px;
+}
+
+.header-actions .btn-save:hover {
+  color: white;
+  background-color: #245a28;
+  border: 2px solid rgb(255, 255, 255, 1);
+  border-radius: 10px;
+}
+
+

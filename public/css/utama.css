@@ -1,0 +1,212 @@
+body {
+    margin: 0;
+    font-family: "Segoe UI", sans-serif;
+    background: linear-gradient(to bottom, #7fcf8c, #229954);
+    background-size: 100%;
+    color: #333;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 0.1rem;
+    color: #ffffff;
+    font-size: 2rem;
+}
+
+.stages {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1rem;
+    padding: 1rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.card {
+    background: #ffffffdd;
+    border: 5px solid #000000;
+    border-radius: 10px;
+    padding: 1.2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    box-shadow: 6px 6px rgba(0, 0, 0, 0.05);
+}
+
+.card:hover {
+    transform: translateY(-3px);
+}
+
+.card h2 {
+    font-size: 1.1rem;
+    color: #000000;
+    margin: 0;
+    text-align: center;
+}
+
+/* Gambar tahap */
+.card .img img {
+    width: 100%;
+    height: auto;
+    border-radius: 6px;
+    border: 1px solid #000000;
+}
+
+/* Kontrol input tanggal dan status */
+.controls {
+    margin-top: 0.8rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.controls textarea,
+.controls select {
+    padding: 0.4rem 0.6rem;
+    border-radius: 5px;
+    border: 1px solid #000000;
+    background-color: #f1faf2;
+    color: #234e28;
+    font-size: 0.9rem;
+}
+
+.extra-btn {
+    margin-top: 0.6rem;
+    padding: 0.5rem 5.5rem;
+    background-color: #3c9e3f;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.extra-btn:hover {
+    background-color: #2e7031;
+}
+
+/* Overlay popup */
+#overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(20, 50, 20, 0.6);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    backdrop-filter: blur(3px);
+}
+
+/* Aktifkan popup */
+#overlay.active {
+    display: flex;
+}
+
+/* Popup container */
+#popup {
+    background: #ffffff;
+    padding: 1rem;
+    border-radius: 8px;
+    max-width: 90%;
+    max-height: 90%;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+/* Gambar dalam popup */
+#popup-img {
+    max-width: 100%;
+    max-height: 60vh;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+
+/* Keterangan */
+#popup-desc {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    color: #333;
+    text-align: center;
+}
+
+/* Tombol close */
+.close-btn {
+    position: absolute;
+    top: 8px;
+    right: 10px;
+    background: transparent;
+    border: none;
+    font-size: 1.2rem;
+    color: #666;
+    cursor: pointer;
+}
+
+.close-btn:hover {
+    color: #111;
+}
+
+.alert-success {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: #b6f7c1;
+    color: #0f5132;
+    padding: 10px 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+    animation: fadeOut 4s ease forwards;
+    z-index: 1000;
+    font-weight: bold;
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+    80% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+}
+
+
+    /* Jika lebar layar kurang dari 768px (biasanya handphone) */
+    @media only screen and (max-width: 768px) {
+      body {
+        background-image: url("../gambar/backgroundbjir.png"); /* Gambar untuk HP */
+      }
+    }
+
+.header-actions {
+  display: flex;
+  justify-content: center;
+  margin-top: 0.5rem;
+}
+
+.back-button {
+  padding: 10px 100px;
+  background-color: white;
+  color: black;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: bold;
+  transition: background-color 0.3s;
+  border: 2px solid rgba(0, 0, 0, 1);
+  border-radius: 10px;
+}
+
+.back-button:hover {
+  background-color: #245a28;
+  color: white;
+  border: 2px solid rgb(255, 255, 255, 1);
+}

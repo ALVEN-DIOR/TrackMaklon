@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
-    <link rel="stylesheet" href="{{ asset('css/utama.css') }}" />
+    <link rel="stylesheet" href="{{ asset('/public_html/css/utama.css') }}" />
     <title>Order Status Tracker — Customer</title>
   </head>
   <body>

@@ -6,7 +6,7 @@ use App\Http\Controllers\UserController;
 
 Route::get('/', [UserController::class, 'masuk'])
      ->name('login.form');
-
+Route::get('/login', [UserController::class, 'masuk']);
 Route::post('/login', [UserController::class, 'logika_masuk'])->name('login');
 
 // Route debug

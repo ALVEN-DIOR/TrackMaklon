@@ -55,7 +55,7 @@
               <div style="margin-top: 10px;">
                 <button class="extra-btn"
                   onclick="showPopup('{{ 
-asset('storage/bukti/' . $bukti->path) }}', `{{ 
+asset('storage/bukti' . $bukti->path) }}', `{{ 
 $bukti->keterangan 
 }}`)">
                   Lihat Bukti

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\UserController;
 
-Route::get('/login', [UserController::class, 'masuk'])
+Route::get('/', [UserController::class, 'masuk'])
      ->name('login.form');
 
 Route::post('/login', [UserController::class, 'logika_masuk'])->name('login');

@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Order Status Tracker Admin</title>
-  <link rel="stylesheet" href="{{ asset('public/css/admin.css') }}">
+  <link rel="stylesheet" href="{{ asset('/public/css/admin.css') }}">
   <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 <body>
@@ -68,7 +68,7 @@
           <div class="card">
             <h2>{{ $i }}. {{ Str::title($stepName) }}</h2>
             <div class="card-img">
-              <img src="{{ asset('gambar/' . $gambar) }}" alt="{{ $stepName }}">
+              <img src="{{ asset('/public/gambar/' . $gambar) }}" alt="{{ $stepName }}">
             </div>
 
             <div class="controls">
@@ -120,7 +120,7 @@
 
       @if($isAdmin)
       <div class="header-actions">
-        <a href="{{ url('/login') }}" class="back-button">Kembali</a>
+        <a href="{{ url('/') }}" class="back-button">Kembali</a>
         <button type="submit" class="btn-save" id="saveBtn">Simpan Semua</button>
       </div>  
       @else

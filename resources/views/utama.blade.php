@@ -33,13 +33,14 @@
         <div class="card">
           <h2>{{ $step }}. {{ Str::title($stepName) }}</h2>
           <div class="img">
-            <img src="{{ asset('gambar/' . $gambar) }}" alt="{{ $stepName }}" />
+            <img src="{{ asset('/public/gambar/' . $gambar) }}" alt="{{ $stepName }}" />
           </div>
 
           <div class="controls">
             <input type="date" disabled value="{{ optional($bukti)->tanggal }}" />
             @if($step === 8)
-              <textarea name="keterangan8" id="keterangan8" rows="5" disabled>{{ old('keterangan8', $buktiAll[8]->keterangan ?? '') }}</textarea>
+              <textarea name="keterangan8" id="keterangan8" rows="5" disabled>{{ old('keterangan8', $buktiList->get(8)->keterangan ?? 
+'') }}</textarea>
             @else
               <select disabled style="background-color: {{ $color }}">
                 <option>
@@ -54,7 +55,7 @@
             @if($bukti && $bukti->path)
               <div style="margin-top: 10px;">
                 <button class="extra-btn"
-                  onclick="showPopup('{{ asset('storage/' . $bukti->path) }}', `{{ $bukti->keterangan }}`)">
+                  onclick="showPopup(  '{{ asset("/public/storage/" . ltrim($bukti->path, "/")) }}',  `{{ $bukti->keterangan }}`)">
                   Lihat Bukti
                 </button>
               </div>
@@ -72,7 +73,7 @@
     </div>
 
     <div class="header-actions">
-        <a href="{{ url('/login') }}" class="back-button">Kembali</a>
+        <a href="{{ url('/') }}" class="back-button">Kembali</a>
     </div>  
 
     <div id="overlay" class="popup-overlay">

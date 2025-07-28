@@ -88,6 +88,7 @@ h1 {
 
 /* Overlay popup */
 #overlay {
+    margin: auto;
     position: fixed;
     top: 0;
     left: 0;
@@ -126,6 +127,7 @@ h1 {
     max-height: 60vh;
     border-radius: 5px;
     border: 1px solid #ddd;
+    margin: auto;
 }
 
 /* Keterangan */

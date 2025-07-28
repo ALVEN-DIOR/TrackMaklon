@@ -109,7 +109,7 @@
                 
                 @if($bukti)
                   <p>File sebelumnya: 
-                    <a href="{{ Storage::url($bukti->path) }}" target="_blank">Lihat</a>
+                    <a href="{{ asset('public/storage/' . $bukti->path) }}" target="_blank">Lihat</a>
                   </p>
                 @endif
               </div>

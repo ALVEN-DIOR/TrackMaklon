@@ -39,7 +39,8 @@
           <div class="controls">
             <input type="date" disabled value="{{ optional($bukti)->tanggal }}" />
             @if($step === 8)
-              <textarea name="keterangan8" id="keterangan8" rows="5" disabled>{{ old('keterangan8', $buktiAll[8]->keterangan ?? '') }}</textarea>
+              <textarea name="keterangan8" id="keterangan8" rows="5" disabled>{{ old('keterangan8', $buktiList->get(8)->keterangan ?? 
+'') }}</textarea>
             @else
               <select disabled style="background-color: {{ $color }}">
                 <option>
@@ -54,10 +55,7 @@
             @if($bukti && $bukti->path)
               <div style="margin-top: 10px;">
                 <button class="extra-btn"
-                  onclick="showPopup('{{ 
-asset('storage/bukti' . $bukti->path) }}', `{{ 
-$bukti->keterangan 
-}}`)">
+                  onclick="showPopup(  '{{ asset("/public/storage/" . ltrim($bukti->path, "/")) }}',  `{{ $bukti->keterangan }}`)">
                   Lihat Bukti
                 </button>
               </div>

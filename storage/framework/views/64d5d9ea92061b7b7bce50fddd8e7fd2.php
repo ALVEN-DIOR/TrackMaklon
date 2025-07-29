@@ -3,48 +3,50 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="{{ asset('/public/css/login.css') }}">
+  <link rel="stylesheet" href="<?php echo e(asset('/public/css/login.css')); ?>">
   <title>Madu WIld Bee - Tracker</title>
-  <meta name="csrf-token" content="{{ csrf_token() }}">
+  <meta name="csrf-token" content="<?php echo e(csrf_token()); ?>">
 </head>
 <body>
   <div class="login-container">
     <h2>Silahkan Login</h2>
     
-    @if ($errors->any())
+    <?php if($errors->any()): ?>
         <div style="color: red; margin-bottom: 20px; border: 1px solid red; padding: 10px;">
             <strong>Validation Errors:</strong>
             <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
+                <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <li><?php echo e($error); ?></li>
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             </ul>
         </div>
-    @endif
+    <?php endif; ?>
 
-    @if (session('error'))
+    <?php if(session('error')): ?>
         <div style="color: red; margin-bottom: 20px; border: 1px solid red; padding: 10px;">
-            <strong>Error:</strong> {{ session('error') }}
-        </div>
-    @endif
+            <strong>Error:</strong> <?php echo e(session('error')); ?>
 
-    @if (session('success'))
-        <div style="color: green; margin-bottom: 20px; border: 1px solid green; padding: 10px;">
-            <strong>Success:</strong> {{ session('success') }}
         </div>
-    @endif
+    <?php endif; ?>
+
+    <?php if(session('success')): ?>
+        <div style="color: green; margin-bottom: 20px; border: 1px solid green; padding: 10px;">
+            <strong>Success:</strong> <?php echo e(session('success')); ?>
+
+        </div>
+    <?php endif; ?>
     
-    <form method="POST" action="{{ route('login') }}" id="loginForm">
-      @csrf
+    <form method="POST" action="<?php echo e(route('login')); ?>" id="loginForm">
+      <?php echo csrf_field(); ?>
       <div class="form-group">
         <label for="email">Email</label>
         <input type="email" id="email" name="email" placeholder="your@email.com" 
-               value="{{ old('email') }}" required />
+               value="<?php echo e(old('email')); ?>" required />
       </div>
       <div class="form-group">
         <label for="no_hp">No Handphone</label>
         <input type="text" id="no_hp" name="no_hp" placeholder="0812XXXXX" 
-               value="{{ old('no_hp') }}" required />
+               value="<?php echo e(old('no_hp')); ?>" required />
       </div>
       <div class="form-group button-wrapper">
         <button type="submit" class="btn-login" id="submitBtn">Masuk</button>
@@ -96,3 +98,4 @@
   </script>
 </body>
 </html>
+<?php /**PATH /home/u857117347/domains/mymaklontracker.com/public_html/resources/views/login.blade.php ENDPATH**/ ?>

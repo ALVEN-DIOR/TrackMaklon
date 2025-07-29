@@ -1,8 +1,8 @@
 body {
   margin: 0;
   font-family: 'Segoe UI', sans-serif;
-  background: #f3f3f3 url('../gambar/bgmaklon.jpg') no-repeat center center fixed;
-  background-size: cover;
+  background: linear-gradient(to bottom, #7fcf8c, #229954);
+  background-size: 100%;
   color: #333;
 }
 

@@ -5,14 +5,12 @@ body {
     background-size: 100%;
     color: #333;
 }
-
 h1 {
     text-align: center;
     margin-bottom: 0.1rem;
     color: #ffffff;
     font-size: 2rem;
 }
-
 .stages {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -21,7 +19,6 @@ h1 {
     max-width: 1200px;
     margin: 0 auto;
 }
-
 .card {
     background: #ffffffdd;
     border: 5px solid #000000;
@@ -32,18 +29,15 @@ h1 {
     gap: 0.5rem;
     box-shadow: 6px 6px rgba(0, 0, 0, 0.05);
 }
-
 .card:hover {
     transform: translateY(-3px);
 }
-
 .card h2 {
     font-size: 1.1rem;
     color: #000000;
     margin: 0;
     text-align: center;
 }
-
 /* Gambar tahap */
 .card .img img {
     width: 100%;
@@ -51,7 +45,6 @@ h1 {
     border-radius: 6px;
     border: 1px solid #000000;
 }
-
 /* Kontrol input tanggal dan status */
 .controls {
     margin-top: 0.8rem;
@@ -59,7 +52,6 @@ h1 {
     flex-direction: column;
     gap: 0.4rem;
 }
-
 .controls textarea,
 .controls select {
     padding: 0.4rem 0.6rem;
@@ -69,7 +61,6 @@ h1 {
     color: #234e28;
     font-size: 0.9rem;
 }
-
 .extra-btn {
     margin-top: 0.6rem;
     padding: 0.5rem 5.5rem;
@@ -81,82 +72,11 @@ h1 {
     cursor: pointer;
     transition: background-color 0.2s ease;
 }
-
 .extra-btn:hover {
     background-color: #2e7031;
 }
 
-/* Overlay Popup */
-
-#overlay {
-    margin: auto;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.85);
-    display: none;
-    align-items: center;
-    justify-content: center;
-    z-index: 9999;
-    backdrop-filter: blur(3px);
-}
-
-/* Aktifkan popup */
-#popup-overlay.active {
-    display: flex;
-}
-
-/* Popup container */
-#popup-content {
-    margin: auto;
-    background: #ffffff;
-    padding: 1rem;
-    border-radius: 8px;
-    max-width: 90%;
-    max-height: 90%;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    position: relative;
-}
-
-/* Gambar dalam popup */
-#popup-img {
-    max-width: 90vw;
-    max-height: 60vh;
-    border-radius: 5px;
-    border: 1px solid #ddd;
-    object-fit: contain;
-    margin: auto;
-}
-
-/* Keterangan */
-#popup-desc {
-    margin-top: 1rem;
-    font-size: 0.9rem;
-    color: #333;
-    text-align: center;
-}
-
-/* Tombol close */
-.close-btn {
-    position: absolute;
-    top: 8px;
-    right: 10px;
-    background: transparent;
-    border: none;
-    font-size: 1.2rem;
-    color: #666;
-    cursor: pointer;
-}
-
-.close-btn:hover {
-    color: #111;
-}
-
+/* Style lainnya tetap sama */
 .alert-success {
     position: fixed;
     top: 20px;
@@ -184,34 +104,26 @@ h1 {
     }
 }
 
-
-    /* Jika lebar layar kurang dari 768px (biasanya handphone) */
-    @media only screen and (max-width: 768px) {
-      body {
-        background-image: url("../gambar/backgroundbjir.png"); /* Gambar untuk HP */
-      }
-    }
-
 .header-actions {
-  display: flex;
-  justify-content: center;
-  margin-top: 0.5rem;
+    display: flex;
+    justify-content: center;
+    margin-top: 0.5rem;
 }
 
 .back-button {
-  padding: 10px 100px;
-  background-color: white;
-  color: black;
-  text-decoration: none;
-  border-radius: 8px;
-  font-weight: bold;
-  transition: background-color 0.3s;
-  border: 2px solid rgba(0, 0, 0, 1);
-  border-radius: 10px;
+    padding: 10px 100px;
+    background-color: white;
+    color: black;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+    border: 2px solid rgba(0, 0, 0, 1);
+    border-radius: 10px;
 }
 
 .back-button:hover {
-  background-color: #245a28;
-  color: white;
-  border: 2px solid rgb(255, 255, 255, 1);
+    background-color: #245a28;
+    color: white;
+    border: 2px solid rgb(255, 255, 255, 1);
 }

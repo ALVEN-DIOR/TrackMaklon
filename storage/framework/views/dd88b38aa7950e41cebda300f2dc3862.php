@@ -3,21 +3,22 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
-    <link rel="stylesheet" href="{{ asset('public/css/utama.css') }}" />
+    <link rel="stylesheet" href="<?php echo e(asset('public/css/utama.css')); ?>" />
     <title>Order Status Tracker — Customer</title>
   </head>
   <body>
-    @if(session('success'))
+    <?php if(session('success')): ?>
       <div class="alert-success">
-        {{ session('success') }}
+        <?php echo e(session('success')); ?>
+
       </div>
-    @endif
+    <?php endif; ?>
 
     <h1>MAKLON PROGRESS TRACKER</h1>
 
     <div class="stages">
-      @foreach($stages as $stepName => $gambar)
-        @php
+      <?php $__currentLoopData = $stages; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $stepName => $gambar): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+        <?php
           $step   = $loop->iteration;
           $bukti  = $buktiList->get($step);
           $rawStatus = optional($bukti)->status ?? 'hold';
@@ -28,52 +29,53 @@
             'hold'        => '#ffb3b3',
             default       => '#e0e0e0',
           };
-        @endphp
+        ?>
 
         <div class="card">
-          <h2>{{ $step }}. {{ Str::title($stepName) }}</h2>
+          <h2><?php echo e($step); ?>. <?php echo e(Str::title($stepName)); ?></h2>
           <div class="img">
-            <img src="{{ asset('/public/gambar/' . $gambar) }}" alt="{{ $stepName }}" />
+            <img src="<?php echo e(asset('/public/gambar/' . $gambar)); ?>" alt="<?php echo e($stepName); ?>" />
           </div>
 
           <div class="controls">
-            <input type="date" disabled value="{{ optional($bukti)->tanggal }}" />
-            @if($step === 8)
-              <textarea name="keterangan8" id="keterangan8" rows="5" disabled>{{ old('keterangan8', $buktiList->get(8)->keterangan ?? 
-'') }}</textarea>
-            @else
-              <select disabled style="background-color: {{ $color }}">
+            <input type="date" disabled value="<?php echo e(optional($bukti)->tanggal); ?>" />
+            <?php if($step === 8): ?>
+              <textarea name="keterangan8" id="keterangan8" rows="5" disabled><?php echo e(old('keterangan8', $buktiList->get(8)->keterangan ?? 
+'')); ?></textarea>
+            <?php else: ?>
+              <select disabled style="background-color: <?php echo e($color); ?>">
                 <option>
-                  {{ $bukti ? ucfirst(str_replace('_',' ',$status)) : '' }}
+                  <?php echo e($bukti ? ucfirst(str_replace('_',' ',$status)) : ''); ?>
+
                 </option>
               </select>
-            @endif
+            <?php endif; ?>
           </div>
 
-          {{-- Tombol Lihat Bukti khusus tahap 1–6 --}}
-          @if($step >= 1 && $step <= 6)
-            @if($bukti && $bukti->path)
+          
+          <?php if($step >= 1 && $step <= 6): ?>
+            <?php if($bukti && $bukti->path): ?>
               <div style="margin-top: 10px;">
                 <button class="extra-btn"
-                  onclick="showPopup(  '{{ asset("/public/storage/" . ltrim($bukti->path, "/")) }}',  `{{ $bukti->keterangan }}`)">
+                  onclick="showPopup(  '<?php echo e(asset("/public/storage/" . ltrim($bukti->path, "/"))); ?>',  `<?php echo e($bukti->keterangan); ?>`)">
                   Lihat Bukti
                 </button>
               </div>
-            @endif
-          @endif
+            <?php endif; ?>
+          <?php endif; ?>
 
-          {{-- Tombol WhatsApp khusus tahap 7 --}}
-          @if($step === 7 && $bukti && $status === 'done')
+          
+          <?php if($step === 7 && $bukti && $status === 'done'): ?>
             <button class="extra-btn">
               Terkirim Via WhatsApp
             </button>
-          @endif  
+          <?php endif; ?>  
         </div>
-      @endforeach
+      <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
     </div>
 
     <div class="header-actions">
-        <a href="{{ url('/') }}" class="back-button">Kembali</a>
+        <a href="<?php echo e(url('/')); ?>" class="back-button">Kembali</a>
     </div>  
 
     <div id="overlay" style="
@@ -194,3 +196,4 @@
     </script>
   </body>
 </html>
+<?php /**PATH /home/u857117347/domains/mymaklontracker.com/public_html/resources/views/utama.blade.php ENDPATH**/ ?>

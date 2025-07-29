@@ -4,33 +4,35 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Order Status Tracker Admin</title>
-  <link rel="stylesheet" href="{{ asset('/public/css/admin.css') }}">
-  <meta name="csrf-token" content="{{ csrf_token() }}">
+  <link rel="stylesheet" href="<?php echo e(asset('/public/css/admin.css')); ?>">
+  <meta name="csrf-token" content="<?php echo e(csrf_token()); ?>">
 </head>
 <body>
   <!-- DEBUG INFO ADMIN -->
   <!-- <div style="background: #e8f5e8; padding: 15px; margin-bottom: 20px; border: 2px solid #28a745;">
     <h3>🔑 ADMIN MODE ACTIVE</h3>
-    <strong>User:</strong> {{ auth()->user()->email }}<br>
-    <strong>Role:</strong> {{ auth()->user()->role }}<br>
-    <strong>No HP:</strong> {{ auth()->user()->no_hp }}<br>
-    <strong>Is Admin:</strong> {{ auth()->user()->role === 'admin' ? 'YES' : 'NO' }}<br>
-    <strong>Can Edit:</strong> {{ auth()->user()->role === 'admin' ? 'YES' : 'NO' }}<br>
+    <strong>User:</strong> <?php echo e(auth()->user()->email); ?><br>
+    <strong>Role:</strong> <?php echo e(auth()->user()->role); ?><br>
+    <strong>No HP:</strong> <?php echo e(auth()->user()->no_hp); ?><br>
+    <strong>Is Admin:</strong> <?php echo e(auth()->user()->role === 'admin' ? 'YES' : 'NO'); ?><br>
+    <strong>Can Edit:</strong> <?php echo e(auth()->user()->role === 'admin' ? 'YES' : 'NO'); ?><br>
   </div> -->
 
-  @if(session('success'))
+  <?php if(session('success')): ?>
     <div class="alert-success">
-      {{ session('success') }}
-    </div>
-  @endif
+      <?php echo e(session('success')); ?>
 
-  @if(session('error'))
+    </div>
+  <?php endif; ?>
+
+  <?php if(session('error')): ?>
     <div class="alert-error" style="background: #ffebee; color: #c62828; padding: 10px; margin-bottom: 20px;">
-      {{ session('error') }}
-    </div>
-  @endif
+      <?php echo e(session('error')); ?>
 
-  @php
+    </div>
+  <?php endif; ?>
+
+  <?php
     $user      = auth()->user();
     $progress  = \App\Models\Progress::firstOrCreate(['user_id' => $user->id]);
     $buktiAll  = \App\Models\Bukti::where('user_id', $user->id)->get()->keyBy('step');
@@ -47,18 +49,18 @@
       'kesimpulan'     => 'gambar2.png',
     ];
 
-  @endphp
+  ?>
 
   <h1>MAKLON PROGRESS TRACKER-ADMIN</h1>
   <div class="container">
-    <input class="form-group" type="email" value="{{ $user->email }}" readonly />
+    <input class="form-group" type="email" value="<?php echo e($user->email); ?>" readonly />
 
-    <form action="{{ route('progress.update') }}" method="POST" enctype="multipart/form-data" id="adminForm">
-      @csrf
+    <form action="<?php echo e(route('progress.update')); ?>" method="POST" enctype="multipart/form-data" id="adminForm">
+      <?php echo csrf_field(); ?>
 
       <div class="stages">
-        @foreach($stages as $stepName => $gambar)
-          @php
+        <?php $__currentLoopData = $stages; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $stepName => $gambar): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+          <?php
             $i          = $loop->iteration;
             $statusKey  = "status{$i}";
             $dateKey    = "tanggal{$i}";
@@ -75,72 +77,72 @@
               7 => 'Digital Marketing',
               8 => 'Digital Marketing',
             ];
-          @endphp
+          ?>
 
           <div class="card">
-            <h2>{{ $i }}. {{ Str::title($stepName) }}</h2>
+            <h2><?php echo e($i); ?>. <?php echo e(Str::title($stepName)); ?></h2>
             <div class="card-img">
-              <img src="{{ asset('/public/gambar/' . $gambar) }}" alt="{{ $stepName }}">
+              <img src="<?php echo e(asset('/public/gambar/' . $gambar)); ?>" alt="<?php echo e($stepName); ?>">
             </div>
 
             <div class="controls">
               <input type="date"
-                name="{{ $dateKey }}"
-                value="{{ old($dateKey, $progress->{$dateKey}) }}"
-                {{ $isAdmin ? '' : 'readonly' }}>
+                name="<?php echo e($dateKey); ?>"
+                value="<?php echo e(old($dateKey, $progress->{$dateKey})); ?>"
+                <?php echo e($isAdmin ? '' : 'readonly'); ?>>
 
-              @if($i === 8 && $isAdmin) <!-- Stage 8: Kesimpulan -->
+              <?php if($i === 8 && $isAdmin): ?> <!-- Stage 8: Kesimpulan -->
                 <label for="keterangan8">Keterangan</label>
-                <textarea name="keterangan8" id="keterangan8" rows="5">{{ old('keterangan8', $buktiAll[8]->keterangan ?? '') }}</textarea>
-              @else
-                <select name="{{ $statusKey }}" 
-                        id="status-select-{{ $i }}"
-                        {{ $isAdmin ? '' : 'disabled' }}>
+                <textarea name="keterangan8" id="keterangan8" rows="5"><?php echo e(old('keterangan8', $buktiAll[8]->keterangan ?? '')); ?></textarea>
+              <?php else: ?>
+                <select name="<?php echo e($statusKey); ?>" 
+                        id="status-select-<?php echo e($i); ?>"
+                        <?php echo e($isAdmin ? '' : 'disabled'); ?>>
                   <option value="done"        
-                    {{ $current === 'done'        ? 'selected' : '' }}>Done</option>
+                    <?php echo e($current === 'done'        ? 'selected' : ''); ?>>Done</option>
                   <option value="on_progress" 
-                    {{ $current === 'on_progress' ? 'selected' : '' }}>On Progress</option>
+                    <?php echo e($current === 'on_progress' ? 'selected' : ''); ?>>On Progress</option>
                   <option value="hold"
-                    {{ is_null($current) || $current==='hold' ? 'selected' : '' }}>
+                    <?php echo e(is_null($current) || $current==='hold' ? 'selected' : ''); ?>>
                     Hold
                   </option>
                 </select>
-              @endif
+              <?php endif; ?>
             </div>
 
-            @if($isAdmin && $i !== 7 && $i !== 8)
-              <div class="file-upload" data-step="{{ $i }}" style="{{ $current === 'done' ? '' : 'display: none;' }}">
-                <label for="bukti{{ $i }}">Upload File</label>
-                <input type="file" id="bukti{{ $i }}" name="bukti{{ $i }}" />
+            <?php if($isAdmin && $i !== 7 && $i !== 8): ?>
+              <div class="file-upload" data-step="<?php echo e($i); ?>" style="<?php echo e($current === 'done' ? '' : 'display: none;'); ?>">
+                <label for="bukti<?php echo e($i); ?>">Upload File</label>
+                <input type="file" id="bukti<?php echo e($i); ?>" name="bukti<?php echo e($i); ?>" />
                 
-                <label for="keterangan{{ $i }}">Keterangan</label>
+                <label for="keterangan<?php echo e($i); ?>">Keterangan</label>
                 <input type="text"
-                      id="keterangan{{ $i }}"
-                      name="keterangan{{ $i }}"
-                      value="{{ old("keterangan{$i}", $bukti?->keterangan) }}" />
+                      id="keterangan<?php echo e($i); ?>"
+                      name="keterangan<?php echo e($i); ?>"
+                      value="<?php echo e(old("keterangan{$i}", $bukti?->keterangan)); ?>" />
                 
-                @if($bukti)
+                <?php if($bukti): ?>
                   <p>File sebelumnya: 
-                    <a href="{{ asset('public/storage/' . $bukti->path) }}" target="_blank">Lihat</a>
+                    <a href="<?php echo e(asset('public/storage/' . $bukti->path)); ?>" target="_blank">Lihat</a>
                   </p>
-                @endif
+                <?php endif; ?>
               </div>
-	     @endif
-           <p class="step-desc" style="margin-top: 10px; color: #333; font-style: italic; text-align: center;">{{ $deskripsiTahapan[$i] }}</p>
+	     <?php endif; ?>
+           <p class="step-desc" style="margin-top: 10px; color: #333; font-style: italic; text-align: center;"><?php echo e($deskripsiTahapan[$i]); ?></p>
           </div>
-        @endforeach
+        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
       </div>
 
-      @if($isAdmin)
+      <?php if($isAdmin): ?>
       <div class="header-actions">
-        <a href="{{ url('/') }}" class="back-button">Kembali</a>
+        <a href="<?php echo e(url('/')); ?>" class="back-button">Kembali</a>
         <button type="submit" class="btn-save" id="saveBtn">Simpan Semua</button>
       </div>  
-      @else
+      <?php else: ?>
         <div style="color: red; text-align: center; padding: 20px;">
           <strong>Anda tidak memiliki akses untuk mengedit data!</strong>
         </div>
-      @endif
+      <?php endif; ?>
     </form>
   </div>
 
@@ -205,3 +207,4 @@
 </script>
 </body>
 </html>
+<?php /**PATH /home/u857117347/domains/mymaklontracker.com/public_html/resources/views/admin.blade.php ENDPATH**/ ?>

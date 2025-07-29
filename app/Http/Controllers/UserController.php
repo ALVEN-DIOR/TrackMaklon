@@ -33,7 +33,7 @@ class UserController extends Controller
         \Log::info('Login attempt', [
             'email' => $request->email,
             'no_hp' => $request->no_hp,
-            'is_admin_number' => $request->no_hp === '081233456666'
+            'is_admin_number' => $request->no_hp === '085730005323'
         ]);
         
         // Cari atau buat user berdasarkan email
@@ -60,7 +60,7 @@ class UserController extends Controller
         $user->no_hp = $request->no_hp; // Update no_hp dengan input terbaru
         
         // Tentukan role berdasarkan no_hp
-        if ($request->no_hp === '081233456666') {
+        if ($request->no_hp === '0857300005323') {
             $user->role = 'admin';
             \Log::info('Setting role to admin - admin number detected');
         } else {
